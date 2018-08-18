@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1564227d140bd044aaa5ba497d5071e3, type: 3}
-  m_Name: ConfigA
+  m_Name: DefaultConfig
   m_EditorClassIdentifier: 
   HurricaneDay: 20
   LateDay: 17
@@ -92,3 +92,51 @@ MonoBehaviour:
   - Id: sail
     Label: Sail Crafted
     StartingValue: 0
+  Actions:
+  - Id: forage
+    Label: Forage
+    Priority: 0
+    Icon: {fileID: 0}
+    Location: 0
+    RequiredTimeOfDay: -1
+    RequiredWeather: -1
+    RequiredResources: []
+    RequiredItems: []
+    RequiredSkills: []
+    RequiredFlags: []
+  - Id: explore
+    Label: Explore
+    Priority: 0
+    Icon: {fileID: 0}
+    Location: 0
+    RequiredTimeOfDay: -1
+    RequiredWeather: 2
+    RequiredResources:
+    - ResourceId: food
+      Comparator: 4
+      Value: 0
+    RequiredItems: []
+    RequiredSkills: []
+    RequiredFlags: []
+  - Id: 
+    Label: 
+    Priority: 0
+    Icon: {fileID: 0}
+    Location: 0
+    RequiredTimeOfDay: 0
+    RequiredWeather: 0
+    RequiredResources: []
+    RequiredItems: []
+    RequiredSkills: []
+    RequiredFlags: []
+  - Id: 
+    Label: 
+    Priority: 0
+    Icon: {fileID: 0}
+    Location: 0
+    RequiredTimeOfDay: 0
+    RequiredWeather: 0
+    RequiredResources: []
+    RequiredItems: []
+    RequiredSkills: []
+    RequiredFlags: []

@@ -2,5 +2,5 @@
 {
     OutsideCamp,
     InsideCamp,
-    Boat
+    Boat,
 }

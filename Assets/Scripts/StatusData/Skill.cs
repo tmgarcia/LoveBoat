@@ -16,6 +16,14 @@ public class Skill
     }
 }
 
+[Serializable]
+public class SkillRequirement
+{
+    public string SkillId;
+    public Comparator Comparator;
+    public int Level;
+}
+
 public class SkillLevel
 {
     public Skill Skill { get; private set; }

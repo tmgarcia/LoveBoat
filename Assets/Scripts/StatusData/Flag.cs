@@ -8,6 +8,13 @@ public class Flag
     public bool StartingValue = false;
 }
 
+[Serializable]
+public class FlagRequirement
+{
+    public string FlagId;
+    public bool Status;
+}
+
 public class FlagStatus
 {
     public Flag Flag { get; private set; }

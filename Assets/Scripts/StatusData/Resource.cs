@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 
-
 [Serializable]
 public class Resource
 {
@@ -15,6 +14,14 @@ public class Resource
     {
         get { return MaxValue != -1; }
     }
+}
+
+[Serializable]
+public class ResourceRequirement
+{
+    public string ResourceId;
+    public Comparator Comparator;
+    public int Value;
 }
 
 public class ResourceValue

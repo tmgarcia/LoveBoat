@@ -16,6 +16,14 @@ public class Item
     }
 }
 
+[Serializable]
+public class ItemRequirement
+{
+    public string ItemId;
+    public Comparator Comparator;
+    public int Amount;
+}
+
 public class InventoryItem
 {
     public Item Item { get; private set; }
