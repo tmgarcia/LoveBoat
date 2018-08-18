@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1564227d140bd044aaa5ba497d5071e3, type: 3}
+  m_Name: ConfigA
+  m_EditorClassIdentifier: 
+  HurricaneDay: 20
+  LateDay: 17
+  EnergyResourceId: energy
+  FoodResourceId: food
+  RepairResourceId: repair
+  LoveResourceId: love
+  Resources:
+  - Id: energy
+    Label: Energy
+    StartingValue: 0
+    MaxValue: 100
+  - Id: food
+    Label: Prepared Food
+    StartingValue: 0
+    MaxValue: -1
+  - Id: repair
+    Label: Boat Repair
+    StartingValue: 0
+    MaxValue: 100
+  - Id: love
+    Label: Boat Love
+    StartingValue: 0
+    MaxValue: 100
+  Items:
+  - Id: foodRaw
+    Label: Raw Food
+    StartingValue: 0
+    MaxValue: -1
+  - Id: oil
+    Label: Oil
+    StartingValue: 0
+    MaxValue: -1
+  - Id: wood
+    Label: Wood
+    StartingValue: 0
+    MaxValue: -1
+  Skills:
+  - Id: crafting
+    Label: Craftsmanship
+    StartingValue: 0
+    MaxValue: -1
+  - Id: fishing
+    Label: Fishing
+    StartingValue: 0
+    MaxValue: -1
+  - Id: scounting
+    Label: Scouting
+    StartingValue: 0
+    MaxValue: -1
+  - Id: cooking
+    Label: Cooking
+    StartingValue: 0
+    MaxValue: -1
+  Flags:
+  - Id: boatFound
+    Label: Found Boat
+    StartingValue: 0
+  - Id: guide
+    Label: Found Survival Guide
+    StartingValue: 0
+  - Id: almanac
+    Label: Found Almanac
+    StartingValue: 0
+  - Id: coconutGrove
+    Label: Found Coconut Grove
+    StartingValue: 0
+  - Id: axe
+    Label: Found Axe
+    StartingValue: 0
+  - Id: rod
+    Label: Found Fishing Rod
+    StartingValue: 0
+  - Id: sewKit
+    Label: Found Sewing Kit
+    StartingValue: 0
+  - Id: campImproved
+    Label: Camp Improved
+    StartingValue: 0
+  - Id: sail
+    Label: Sail Crafted
+    StartingValue: 0
