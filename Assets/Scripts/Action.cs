@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class ActionDefinition
+[CreateAssetMenu(fileName = "Action", menuName = "Love Boat/Action", order = 2)]
+public class Action : ScriptableObject
 {
     public string Id;
     public string Label;

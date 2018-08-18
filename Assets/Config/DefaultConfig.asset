@@ -93,50 +93,5 @@ MonoBehaviour:
     Label: Sail Crafted
     StartingValue: 0
   Actions:
-  - Id: forage
-    Label: Forage
-    Priority: 0
-    Icon: {fileID: 0}
-    Location: 0
-    RequiredTimeOfDay: -1
-    RequiredWeather: -1
-    RequiredResources: []
-    RequiredItems: []
-    RequiredSkills: []
-    RequiredFlags: []
-  - Id: explore
-    Label: Explore
-    Priority: 0
-    Icon: {fileID: 0}
-    Location: 0
-    RequiredTimeOfDay: -1
-    RequiredWeather: 2
-    RequiredResources:
-    - ResourceId: food
-      Comparator: 4
-      Value: 0
-    RequiredItems: []
-    RequiredSkills: []
-    RequiredFlags: []
-  - Id: 
-    Label: 
-    Priority: 0
-    Icon: {fileID: 0}
-    Location: 0
-    RequiredTimeOfDay: 0
-    RequiredWeather: 0
-    RequiredResources: []
-    RequiredItems: []
-    RequiredSkills: []
-    RequiredFlags: []
-  - Id: 
-    Label: 
-    Priority: 0
-    Icon: {fileID: 0}
-    Location: 0
-    RequiredTimeOfDay: 0
-    RequiredWeather: 0
-    RequiredResources: []
-    RequiredItems: []
-    RequiredSkills: []
-    RequiredFlags: []
+  - {fileID: 11400000, guid: 30a9c946d828d9f42887578ebde49f59, type: 2}
+  - {fileID: 11400000, guid: e493b1eee3f32894799d6bdcb90c968f, type: 2}

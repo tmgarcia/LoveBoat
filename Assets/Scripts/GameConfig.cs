@@ -25,5 +25,5 @@ public class GameConfig : ScriptableObject
     public List<Flag> Flags = new List<Flag>();
 
     [Header("Actions")]
-    public List<ActionDefinition> Actions = new List<ActionDefinition>();
+    public List<Action> Actions = new List<Action>();
 }
