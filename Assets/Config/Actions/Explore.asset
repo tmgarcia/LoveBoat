@@ -9,22 +9,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e6b8ed72136f724e827672af99dfc59, type: 3}
-  m_Name: Cook
+  m_Name: Explore
   m_EditorClassIdentifier: 
-  Id: cook
-  Label: Cook
+  Id: explore
+  Label: Explore
   Priority: 0
   Icon: {fileID: 0}
-  Location: 1
+  Location: 0
   RequiredTimeOfDay: -1
   RequiredWeather: -1
   RequiredResources:
   - ResourceId: food
-    Comparator: 4
-    Value: 0
-  RequiredItems:
-  - ItemId: foodRaw
     Comparator: 3
-    Amount: 1
+    Value: 1
+  RequiredItems: []
   RequiredSkills: []
-  RequiredFlags: []
+  RequiredFlags:
+  - FlagId: guide
+    Status: 1
