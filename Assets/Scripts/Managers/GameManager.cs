@@ -5,6 +5,8 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] private GameConfig _gameConfig;
     public GameConfig Config { get { return _gameConfig; } }
 
+    public ActionEvent OnActionStartEvent = new ActionEvent();
+
     private void Start()
     {
         if (_gameConfig == null)
@@ -68,6 +70,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         ActionManager.Instance.ActiveAction = action;
         ScreenManager.Instance.GoToScreen("event");
+        OnActionStartEvent.Invoke(action);
     }
 
     public void EndAction(Action action)

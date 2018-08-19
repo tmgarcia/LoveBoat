@@ -44,9 +44,46 @@ public class GameStatus : MonoSingleton<GameStatus>
         foreach(var flag in flags) { Flags.Add(flag.Id, new FlagStatus(flag)); }
     }
 
+    public ResourceValue EnergyLevel
+    {
+        get
+        {
+            ResourceValue resourceValue = null;
+            if (!ResourceValues.TryGetValue(_config.EnergyResourceId, out resourceValue)) Debug.LogError("Energy Resource Missing!");
+            return resourceValue;
+        }
+    }
+    public ResourceValue FoodLevel
+    {
+        get
+        {
+            ResourceValue resourceValue = null;
+            if (!ResourceValues.TryGetValue(_config.FoodResourceId, out resourceValue)) Debug.LogError("Food Resource Missing!");
+            return resourceValue;
+        }
+    }
+    public ResourceValue RepairLevel
+    {
+        get
+        {
+            ResourceValue resourceValue = null;
+            if (!ResourceValues.TryGetValue(_config.RepairResourceId, out resourceValue)) Debug.LogError("Repair Resource Missing!");
+            return resourceValue;
+        }
+    }
+    public ResourceValue LoveLevel
+    {
+        get
+        {
+            ResourceValue resourceValue = null;
+            if (!ResourceValues.TryGetValue(_config.LoveResourceId, out resourceValue)) Debug.LogError("Love Resource Missing!");
+            return resourceValue;
+        }
+    }
+
     public void OnGUI()
     {
-        if(_debugUI)
+        if (_debugUI)
         {
             GUI.color = Color.black;
 
@@ -63,9 +100,9 @@ public class GameStatus : MonoSingleton<GameStatus>
             GUI.Label(position, "RESOURCES");
             position.y += lineHeight;
             position.x += 10;
-            foreach(var resourceValue in ResourceValues)
+            foreach (var resourceValue in ResourceValues)
             {
-                GUI.Label(position, resourceValue.Key +": " + resourceValue.Value.CurrentValue);
+                GUI.Label(position, resourceValue.Key + ": " + resourceValue.Value.CurrentValue);
                 position.y += lineHeight;
             }
             position.x -= 10;
@@ -106,43 +143,6 @@ public class GameStatus : MonoSingleton<GameStatus>
                 position.y += lineHeight;
             }
             position.x -= 10;
-        }
-    }
-
-    public ResourceValue EnergyLevel
-    {
-        get
-        {
-            ResourceValue resourceValue = null;
-            if (!ResourceValues.TryGetValue(_config.EnergyResourceId, out resourceValue)) Debug.LogError("Energy Resource Missing!");
-            return resourceValue;
-        }
-    }
-    public ResourceValue FoodLevel
-    {
-        get
-        {
-            ResourceValue resourceValue = null;
-            if (!ResourceValues.TryGetValue(_config.FoodResourceId, out resourceValue)) Debug.LogError("Food Resource Missing!");
-            return resourceValue;
-        }
-    }
-    public ResourceValue RepairLevel
-    {
-        get
-        {
-            ResourceValue resourceValue = null;
-            if (!ResourceValues.TryGetValue(_config.RepairResourceId, out resourceValue)) Debug.LogError("Repair Resource Missing!");
-            return resourceValue;
-        }
-    }
-    public ResourceValue LoveLevel
-    {
-        get
-        {
-            ResourceValue resourceValue = null;
-            if (!ResourceValues.TryGetValue(_config.LoveResourceId, out resourceValue)) Debug.LogError("Love Resource Missing!");
-            return resourceValue;
         }
     }
 }

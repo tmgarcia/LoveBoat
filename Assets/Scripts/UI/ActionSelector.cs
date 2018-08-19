@@ -7,7 +7,7 @@ public class ActionSelector: MonoBehaviour
     [SerializeField] private Button _button;
 
     private Action _action;
-    public ActionSelectEvent OnSelect = new ActionSelectEvent();
+    public ActionEvent OnSelect = new ActionEvent();
 
     void Start()
     {

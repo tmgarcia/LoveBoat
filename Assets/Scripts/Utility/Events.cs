@@ -4,4 +4,5 @@
 public class ScreenActivationEvent : UnityEvent<bool> { }
 
 [System.Serializable]
-public class ActionSelectEvent : UnityEvent<Action> { }
+public class ActionEvent : UnityEvent<Action> { }
+

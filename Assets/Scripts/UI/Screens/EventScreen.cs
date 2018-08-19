@@ -1,33 +1,72 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Screen))]
-public class EventScreen : MonoBehaviour
+public class EventScreen : MonoSingleton<EventScreen>
 {
-    [SerializeField] private Text _actionLabel;
-    [SerializeField] private Button _endButton;
+    [SerializeField] private Text _dialogueArea;
+    [SerializeField] private GameObject _choiceContainer;
 
-    private Action _activeAction;
+    [SerializeField] private GameObject _choicePrefab;
+
+    private List<string> _dialogueLines = new List<string>();
+    private List<DialogueOption> _dialogueOptions = new List<DialogueOption>();
 
 	void Start ()
     {
         var screen = gameObject.GetComponent<Screen>();
         screen.OnActiveChange.AddListener(OnScreenActiveChange);
-
-        _endButton.onClick.AddListener(OnActionEndHandler);
     }
 	
     void OnScreenActiveChange(bool screenActive)
     {
-        if(screenActive)
+        if (!screenActive)
         {
-            _activeAction = ActionManager.Instance.ActiveAction;
+            ClearAll();
         }
     }
 
-    void OnActionEndHandler()
+    public void ClearAll()
     {
-        GameManager.Instance.EndAction(_activeAction);
-        _activeAction = null;
+        _dialogueLines = new List<string>();
+        _dialogueOptions = new List<DialogueOption>();
+
+        _dialogueArea.text = "";
+
+        foreach (Transform child in _choiceContainer.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+    }
+
+    public void AddDialogueLine(string text)
+    {
+        _dialogueLines.Add(text);
+
+        // TODO: Not all this
+        var combinedDialogue = string.Join("\n", _dialogueLines.ToArray());
+        _dialogueArea.text = combinedDialogue;
+    }
+
+    public void AddDialogueOption(DialogueOption option)
+    {
+        _dialogueOptions.Add(option);
+        var optionObj = Instantiate(_choicePrefab, _choiceContainer.transform);
+        var optionSelector = optionObj.GetComponent<DialogueOptionSelect>();
+        optionSelector.SetOption(option);
+    }
+}
+
+public class DialogueOption
+{
+    public string Text { get; private set; }
+    public UnityEvent OnSelect = new UnityEvent();
+
+    public DialogueOption(string text)
+    {
+        Text = text;
     }
 }
