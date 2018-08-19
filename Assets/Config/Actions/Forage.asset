@@ -21,4 +21,6 @@ MonoBehaviour:
   RequiredResources: []
   RequiredItems: []
   RequiredSkills: []
-  RequiredFlags: []
+  RequiredFlags:
+  - FlagId: guide
+    Status: 1
