@@ -23,6 +23,7 @@ public class SearchWreckBehavior : ActionBehavior
 
     protected override void EndAction()
     {
+        GameStatus.Instance.ResourceValues["food"].CurrentValue += 2;
         GameStatus.Instance.Flags["guide"].Status = true;
         base.EndAction();
     }

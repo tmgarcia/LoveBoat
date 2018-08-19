@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1564227d140bd044aaa5ba497d5071e3, type: 3}
   m_Name: DefaultConfig
   m_EditorClassIdentifier: 
-  HurricaneDay: 3
-  LateDay: 2
+  HurricaneDay: 20
+  LateDay: 15
   EnergyResourceId: energy
   FoodResourceId: food
   RepairResourceId: repair
@@ -24,7 +24,7 @@ MonoBehaviour:
     MaxValue: 100
   - Id: food
     Label: Prepared Food
-    StartingValue: 10
+    StartingValue: 0
     MaxValue: -1
   - Id: repair
     Label: Boat Repair
@@ -56,7 +56,7 @@ MonoBehaviour:
     Label: Fishing
     StartingValue: 0
     MaxValue: -1
-  - Id: scounting
+  - Id: scouting
     Label: Scouting
     StartingValue: 0
     MaxValue: -1
