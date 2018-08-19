@@ -24,7 +24,7 @@ MonoBehaviour:
     MaxValue: 100
   - Id: food
     Label: Prepared Food
-    StartingValue: 0
+    StartingValue: 10
     MaxValue: -1
   - Id: repair
     Label: Boat Repair
