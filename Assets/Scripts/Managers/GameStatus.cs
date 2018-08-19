@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GameStatus : MonoSingleton<GameStatus>
 {
-    [SerializeField] bool _debugUI = true;
+    [SerializeField] bool _debugUI = false;
 
     private GameConfig _config { get { return GameManager.Instance.Config; } }
 
