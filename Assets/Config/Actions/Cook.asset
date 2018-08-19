@@ -20,7 +20,7 @@ MonoBehaviour:
   RequiredWeather: -1
   RequiredResources: []
   RequiredItems:
-  - ItemId: rawFood
+  - ItemId: foodRaw
     Comparator: 3
     Amount: 1
   RequiredSkills: []

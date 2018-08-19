@@ -69,7 +69,8 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else
         {
-            ScreenManager.Instance.GoToScreen("actions");
+            //ScreenManager.Instance.GoToScreen("actions");
+            ScreenManager.Instance.GoToScreen("day");
         }
     }
 

@@ -86,6 +86,14 @@ public class ActionManager : MonoSingleton<ActionManager>
         for(int i = 0; i < resourceRequirements.Count && allReqsMet; i++)
         {
             var requirement = resourceRequirements[i];
+
+            if (!GameStatus.Instance.ResourceValues.ContainsKey(requirement.ResourceId))
+            {
+                Debug.LogError("Resource with ID " + requirement.ResourceId + " not found.");
+                allReqsMet = false;
+                continue;
+            }
+
             var resourceValue = GameStatus.Instance.ResourceValues[requirement.ResourceId].CurrentValue;
 
             allReqsMet = MeetsValueRequirement(requirement.Value, resourceValue, requirement.Comparator);
@@ -101,6 +109,14 @@ public class ActionManager : MonoSingleton<ActionManager>
         for (int i = 0; i < itemRequirements.Count && allReqsMet; i++)
         {
             var item = itemRequirements[i];
+
+            if (!GameStatus.Instance.InventoryItems.ContainsKey(item.ItemId))
+            {
+                Debug.LogError("Item with ID " + item.ItemId + " not found.");
+                allReqsMet = false;
+                continue;
+            }
+
             var value = GameStatus.Instance.InventoryItems[item.ItemId].Amount;
 
             allReqsMet = MeetsValueRequirement(item.Amount, value, item.Comparator);
@@ -116,6 +132,14 @@ public class ActionManager : MonoSingleton<ActionManager>
         for (int i = 0; i < skillRequirements.Count && allReqsMet; i++)
         {
             var skill = skillRequirements[i];
+
+            if (!GameStatus.Instance.SkillLevels.ContainsKey(skill.SkillId))
+            {
+                Debug.LogError("Skill with ID " + skill.SkillId + " not found.");
+                allReqsMet = false;
+                continue;
+            }
+
             var level = GameStatus.Instance.SkillLevels[skill.SkillId].Level;
 
             allReqsMet = MeetsValueRequirement(skill.Level, level, skill.Comparator);
