@@ -7,11 +7,11 @@ public class SearchWreckBehavior : ActionBehavior
     private void Start()
     {
         var lines = new List<DialogueLine>() {
-            new DialogueLine("There might be something useful in this wreckage...", null),
-            new DialogueLine("Hmm... a few rations... and it looks like...", null),
-            new DialogueLine("A small book.  'The Castaway's Guide to Survival'.  Sounds useful.", null),
+            new DialogueLine("Player", "There might be something useful in this wreckage...", null),
+            new DialogueLine("Player", "Hmm... a few rations... and it looks like...", null),
+            new DialogueLine("Player", "A small book.  'The Castaway's Guide to Survival'.  Sounds useful.", null),
         };
-        _dialogue = new Dialogue("Player", lines, null, () => {
+        _dialogue = new Dialogue(lines, null, () => {
             EndAction();
         });
     }

@@ -6,8 +6,8 @@ public class PamperBehavior : ActionBehavior
 
     private void Start()
     {
-        var lines = new List<DialogueLine>() { new DialogueLine("I used some of the oil I gathered to polish Boat's hull.", null) };
-        _dialogue = new Dialogue("Player", lines, null, () => {
+        var lines = new List<DialogueLine>() { new DialogueLine("Player", "I used some of the oil I gathered to polish Boat's hull.", null) };
+        _dialogue = new Dialogue(lines, null, () => {
             EndAction();
         });
     }

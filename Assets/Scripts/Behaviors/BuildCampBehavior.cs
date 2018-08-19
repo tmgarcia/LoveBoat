@@ -6,8 +6,8 @@ public class BuildCampBehavior : ActionBehavior
 
     private void Start()
     {
-        var lines = new List<DialogueLine>() { new DialogueLine("I put some work into expanding my camp.", null) };
-        _dialogue = new Dialogue("Player", lines, null, () => {
+        var lines = new List<DialogueLine>() { new DialogueLine("Player", "I put some work into expanding my camp.", null) };
+        _dialogue = new Dialogue(lines, null, () => {
             EndAction();
         });
     }

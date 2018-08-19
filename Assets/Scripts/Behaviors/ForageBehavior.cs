@@ -7,11 +7,11 @@ public class ForageBehavior : ActionBehavior
     private void Start()
     {
         var lines = new List<DialogueLine>() {
-            new DialogueLine("You go out to find some supplies...", null),
-            new DialogueLine("You root around in the sand for a while...", null),
-            new DialogueLine("You end up finding some crabs that look like they might taste all right.", null),
+            new DialogueLine("Player", "You go out to find some supplies...", null),
+            new DialogueLine("Player", "You root around in the sand for a while...", null),
+            new DialogueLine("Player", "You end up finding some crabs that look like they might taste all right.", null),
         };
-        _dialogue = new Dialogue("Player", lines, null, () => {
+        _dialogue = new Dialogue(lines, null, () => {
             EndAction();
         });
     }

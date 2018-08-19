@@ -6,8 +6,8 @@ public class FixSailBehavior : ActionBehavior
 
     private void Start()
     {
-        var lines = new List<DialogueLine>() { new DialogueLine("I fixed up Boat's sail.  We're leaving tomorrow morning!", null) };
-        _dialogue = new Dialogue("Player", lines, null, () => {
+        var lines = new List<DialogueLine>() { new DialogueLine("Player", "I fixed up Boat's sail.  We're leaving tomorrow morning!", null) };
+        _dialogue = new Dialogue(lines, null, () => {
             EndAction();
         });
     }

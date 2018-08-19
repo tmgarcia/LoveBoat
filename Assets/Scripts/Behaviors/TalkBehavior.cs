@@ -6,8 +6,8 @@ public class TalkBehavior : ActionBehavior
 
     private void Start()
     {
-        var lines = new List<DialogueLine>() { new DialogueLine("I spent some time talking with Boat.", null) };
-        _dialogue = new Dialogue("Player", lines, null, () => {
+        var lines = new List<DialogueLine>() { new DialogueLine("Player", "I spent some time talking with Boat.", null) };
+        _dialogue = new Dialogue(lines, null, () => {
             EndAction();
         });
     }

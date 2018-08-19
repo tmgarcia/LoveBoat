@@ -8,7 +8,7 @@ public class DebugBehavior : ActionBehavior
 
     private void Start()
     {
-        var lines = new List<DialogueLine>() { new DialogueLine("HI HOW ARE YOU", null) };
+        var lines = new List<DialogueLine>() { new DialogueLine("VOID", "HI HOW ARE YOU", null) };
         var options = new List<DialogueOption>()
         {
             new DialogueOption("Do Nothing", () => EndAction()),
@@ -16,7 +16,7 @@ public class DebugBehavior : ActionBehavior
             new DialogueOption("Fill Repair", () => FillRepair()),
             new DialogueOption("Fill Love", () => FillLove()),
         };
-        _dialogue = new Dialogue("THE VOID", lines, options);
+        _dialogue = new Dialogue(lines, options);
     }
 
     protected override void OnActionStart()

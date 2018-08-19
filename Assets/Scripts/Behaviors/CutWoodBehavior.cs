@@ -6,8 +6,8 @@ public class CutWoodBehavior : ActionBehavior
 
     private void Start()
     {
-        var lines = new List<DialogueLine>() { new DialogueLine("I decided to spend some time cutting down trees to use for lumber.", null) };
-        _dialogue = new Dialogue("Player", lines, null, () => {
+        var lines = new List<DialogueLine>() { new DialogueLine("Player", "I decided to spend some time cutting down trees to use for lumber.", null) };
+        _dialogue = new Dialogue(lines, null, () => {
             EndAction();
         });
     }

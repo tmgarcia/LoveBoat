@@ -6,8 +6,8 @@ public class FishBehavior : ActionBehavior
 
     private void Start()
     {
-        var lines = new List<DialogueLine>() { new DialogueLine("It's raining... might be a good time to fish.", null) };
-        _dialogue = new Dialogue("Player", lines, null, () => {
+        var lines = new List<DialogueLine>() { new DialogueLine("Player", "It's raining... might be a good time to fish.", null) };
+        _dialogue = new Dialogue(lines, null, () => {
             EndAction();
         });
     }

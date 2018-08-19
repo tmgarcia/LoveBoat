@@ -6,8 +6,8 @@ public class ExploreBehavior : ActionBehavior
 
     private void Start()
     {
-        var lines = new List<DialogueLine>() { new DialogueLine("I decided to spend some time exploring the island...", null) };
-        _dialogue = new Dialogue("Player", lines, null, () => {
+        var lines = new List<DialogueLine>() { new DialogueLine("Player", "I decided to spend some time exploring the island...", null) };
+        _dialogue = new Dialogue(lines, null, () => {
             EndAction();
         });
     }

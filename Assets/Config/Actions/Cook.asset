@@ -18,12 +18,9 @@ MonoBehaviour:
   Location: 1
   RequiredTimeOfDay: -1
   RequiredWeather: -1
-  RequiredResources:
-  - ResourceId: food
-    Comparator: 4
-    Value: 0
+  RequiredResources: []
   RequiredItems:
-  - ItemId: foodRaw
+  - ItemId: rawFood
     Comparator: 3
     Amount: 1
   RequiredSkills: []

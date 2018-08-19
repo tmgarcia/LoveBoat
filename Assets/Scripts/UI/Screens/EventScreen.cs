@@ -79,6 +79,7 @@ public class EventScreen : MonoSingleton<EventScreen>
             //_currentDisplayedDialogue += nextLine.Text;
             _dialogueArea.text = nextLine.Text;
             nextLine.Display();
+            _speakerLabel.text = nextLine.Speaker;
 
             // Last Dialogue Option
             if (_nextDialogueIndex == _currentDialogue.Lines.Count - 1)
@@ -121,16 +122,14 @@ public class EventScreen : MonoSingleton<EventScreen>
 
 public class Dialogue
 {
-    public string Speaker { get; private set; }
     public List<DialogueOption> Options { get; private set; }
     public List<DialogueLine> Lines { get; private set; }
 
     // Optional event to listen to for dialogues that don't have options
     private System.Action _onAllLinesShown;
 
-    public Dialogue(string speaker, List<DialogueLine> lines, List<DialogueOption> options, System.Action onAllLinesShown = null)
+    public Dialogue(List<DialogueLine> lines, List<DialogueOption> options, System.Action onAllLinesShown = null)
     {
-        Speaker = speaker;
         Lines = lines;
         Options = options;
 
@@ -148,11 +147,13 @@ public class Dialogue
 
 public class DialogueLine
 {
+    public string Speaker { get; private set; }
     public string Text { get; private set; }
     private System.Action _onDisplay;
 
-    public DialogueLine(string text, System.Action onDisplay)
+    public DialogueLine(string speaker, string text,System.Action onDisplay)
     {
+        Speaker = speaker;
         Text = text;
         _onDisplay = onDisplay;
     }
