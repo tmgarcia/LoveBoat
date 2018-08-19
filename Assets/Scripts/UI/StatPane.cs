@@ -79,6 +79,7 @@ public class StatPane : MonoBehaviour
         _dayText.text = ""+GameStatus.Instance.CurrentDay;
         _timeText.text = GameStatus.Instance.CurrentTimeOfDay.ToString();
         _weatherText.text = GameStatus.Instance.CurrentWeather.ToString();
+        _foodText.text = ""+GameStatus.Instance.FoodLevel.CurrentValue;
 
         Sprite timeSprite = null;
         switch (GameStatus.Instance.CurrentTimeOfDay)
@@ -127,6 +128,8 @@ public class StatPane : MonoBehaviour
 
         foreach (var item in GameStatus.Instance.InventoryItems)
         {
+            if (item.Value.Amount <= 0) continue;
+
             var itemObject = GetItemFromPool();
             var lv = itemObject.GetComponent<LabelValue>();
             lv.SetLabel(item.Value.Item.Label+":");

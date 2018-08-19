@@ -25,6 +25,12 @@ public class EndScreen : MonoBehaviour
         GameManager.Instance.RestartGame();
     }
 
+    public void OnCreditsClick()
+    {
+        DisableAll();
+        ScreenManager.Instance.GoToScreen("credits");
+    }
+
     void DisableAll()
     {
         _starvedScreen.SetActive(false);
