@@ -4,30 +4,24 @@ using UnityEngine;
 
 public class DebugBehavior : ActionBehavior
 {
-    private DialogueOption _endOption;
-    private DialogueOption _addFoodOption;
-    private DialogueOption _fillRepairOption;
-    private DialogueOption _fillLoveOption;
+    private Dialogue _dialogue;
 
     private void Start()
     {
-        _endOption = new DialogueOption("Do Nothing");
-        _endOption.OnSelect.AddListener(EndAction);
-        _addFoodOption = new DialogueOption("Add Food");
-        _addFoodOption.OnSelect.AddListener(AddFood);
-        _fillRepairOption = new DialogueOption("Fill Repair");
-        _fillRepairOption.OnSelect.AddListener(FillRepair);
-        _fillLoveOption = new DialogueOption("Fill Love");
-        _fillLoveOption.OnSelect.AddListener(FillLove);
+        var lines = new List<DialogueLine>() { new DialogueLine("HI HOW ARE YOU", null) };
+        var options = new List<DialogueOption>()
+        {
+            new DialogueOption("Do Nothing", () => EndAction()),
+            new DialogueOption("Add Food", () => AddFood()),
+            new DialogueOption("Fill Repair", () => FillRepair()),
+            new DialogueOption("Fill Love", () => FillLove()),
+        };
+        _dialogue = new Dialogue("THE VOID", lines, options);
     }
 
     protected override void OnActionStart()
     {
-        AddDialogueLine("HI HOW ARE YOU");
-        AddDialogueOption(_endOption);
-        AddDialogueOption(_addFoodOption);
-        AddDialogueOption(_fillRepairOption);
-        AddDialogueOption(_fillLoveOption);
+        SetDialogue(_dialogue);
     }
 
     void AddFood()

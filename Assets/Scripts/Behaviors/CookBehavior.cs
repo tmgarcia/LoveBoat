@@ -1,27 +1,25 @@
-﻿public class CookBehavior : ActionBehavior
+﻿using System.Collections.Generic;
+
+public class CookBehavior : ActionBehavior
 {
-    private DialogueOption _goodbyeOption;
+    private Dialogue _dialogue;
 
     private void Start()
     {
-        _goodbyeOption = new DialogueOption("GOODBYE");
-        _goodbyeOption.OnSelect.AddListener(OnGoodbye);
+        var lines = new List<DialogueLine>() { new DialogueLine("I COOK", null) };
+        _dialogue = new Dialogue("Player", lines, null, () => {
+            EndAction();
+        });
     }
 
     protected override void OnActionStart()
     {
-        AddDialogueLine("HI HOW ARE YOU");
-        AddDialogueOption(_goodbyeOption);
-    }
-
-    void OnGoodbye()
-    {
-        EndAction();
+        SetDialogue(_dialogue);
     }
 
     protected override void EndAction()
     {
-        GameStatus.Instance.LoveLevel.CurrentValue += 50;
+        GameStatus.Instance.FoodLevel.CurrentValue += 50;
         base.EndAction();
     }
 }

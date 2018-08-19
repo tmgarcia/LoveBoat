@@ -1,22 +1,20 @@
-﻿public class FishBehavior : ActionBehavior
+﻿using System.Collections.Generic;
+
+public class FishBehavior : ActionBehavior
 {
-    private DialogueOption _continueOption;
+    private Dialogue _dialogue;
 
     private void Start()
     {
-        _continueOption = new DialogueOption("Continue");
-        _continueOption.OnSelect.AddListener(OnContinue);
+        var lines = new List<DialogueLine>() { new DialogueLine("It's raining... might be a good time to fish.", null) };
+        _dialogue = new Dialogue("Player", lines, null, () => {
+            EndAction();
+        });
     }
 
     protected override void OnActionStart()
     {
-        AddDialogueLine("<Player>: It's raining... might be a good time to fish.");
-        AddDialogueOption(_continueOption);
-    }
-
-    void OnContinue()
-    {
-        EndAction();
+        SetDialogue(_dialogue);
     }
 
     protected override void EndAction()

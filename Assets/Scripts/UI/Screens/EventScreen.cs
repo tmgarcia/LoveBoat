@@ -6,13 +6,16 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Screen))]
 public class EventScreen : MonoSingleton<EventScreen>
 {
+    [SerializeField] private Text _speakerLabel;
     [SerializeField] private Text _dialogueArea;
     [SerializeField] private GameObject _choiceContainer;
+    [SerializeField] private Button _continueButton;
 
     [SerializeField] private GameObject _choicePrefab;
 
-    private List<string> _dialogueLines = new List<string>();
-    private List<DialogueOption> _dialogueOptions = new List<DialogueOption>();
+    private Dialogue _currentDialogue;
+    private string _currentDisplayedDialogue;
+    private int _nextDialogueIndex;
 
     private Screen _screen = null;
 
@@ -22,6 +25,8 @@ public class EventScreen : MonoSingleton<EventScreen>
         {
             _screen = gameObject.GetComponent<Screen>();
             _screen.OnActiveChange.AddListener(OnScreenActiveChange);
+
+            _continueButton.onClick.AddListener(OnContinueClick);
         }
     }
 
@@ -35,8 +40,10 @@ public class EventScreen : MonoSingleton<EventScreen>
 
     public void ClearAll()
     {
-        _dialogueLines = new List<string>();
-        _dialogueOptions = new List<DialogueOption>();
+        _currentDialogue = null;
+        _nextDialogueIndex = 0;
+        _currentDisplayedDialogue = "";
+        _continueButton.gameObject.SetActive(false);
 
         _dialogueArea.text = "";
 
@@ -46,31 +53,135 @@ public class EventScreen : MonoSingleton<EventScreen>
         }
     }
 
-    public void AddDialogueLine(string text)
+    void OnContinueClick()
     {
-        _dialogueLines.Add(text);
-
-        // TODO: Not all this
-        var combinedDialogue = string.Join("\n", _dialogueLines.ToArray());
-        _dialogueArea.text = combinedDialogue;
+        NextDialogueLine();
     }
 
-    public void AddDialogueOption(DialogueOption option)
+    public void SetDialogue(Dialogue dialogue)
     {
-        _dialogueOptions.Add(option);
-        var optionObj = Instantiate(_choicePrefab, _choiceContainer.transform);
-        var optionSelector = optionObj.GetComponent<DialogueOptionSelect>();
-        optionSelector.SetOption(option);
+        ClearAll();
+
+        _currentDialogue = dialogue;
+        NextDialogueLine();
+    }
+
+    private void NextDialogueLine()
+    {
+        // We are not passed the last line
+        if(_nextDialogueIndex < _currentDialogue.Lines.Count)
+        {
+            var nextLine = _currentDialogue.Lines[_nextDialogueIndex];
+
+            //if (_nextDialogueIndex > 0)
+                //_currentDisplayedDialogue += "\n";
+
+            //_currentDisplayedDialogue += nextLine.Text;
+            _dialogueArea.text = nextLine.Text;
+            nextLine.Display();
+
+            // Last Dialogue Option
+            if (_nextDialogueIndex == _currentDialogue.Lines.Count - 1)
+            {
+                if (_currentDialogue.Options != null && _currentDialogue.Options.Count > 0)
+                {
+                    _currentDialogue.AllDialogueLinesShown();
+                    _continueButton.gameObject.SetActive(false);
+                    SetDialogueOptions(_currentDialogue.Options);
+                }
+                else
+                {
+                    _continueButton.gameObject.SetActive(true);
+                }
+            }
+            // Not Last Dialogue Option
+            else
+            {
+                _continueButton.gameObject.SetActive(true);
+            }
+            _nextDialogueIndex += 1;
+        }
+        // We passed the last line, trigger end of dialogue
+        else
+        {
+            _currentDialogue.AllDialogueLinesShown();
+        }
+    }
+
+    public void SetDialogueOptions(List<DialogueOption> options)
+    {
+        foreach(DialogueOption option in options)
+        {
+            var optionObj = Instantiate(_choicePrefab, _choiceContainer.transform);
+            var optionSelector = optionObj.GetComponent<DialogueOptionSelect>();
+            optionSelector.SetOption(option);
+        }
+    }
+}
+
+public class Dialogue
+{
+    public string Speaker { get; private set; }
+    public List<DialogueOption> Options { get; private set; }
+    public List<DialogueLine> Lines { get; private set; }
+
+    // Optional event to listen to for dialogues that don't have options
+    private System.Action _onAllLinesShown;
+
+    public Dialogue(string speaker, List<DialogueLine> lines, List<DialogueOption> options, System.Action onAllLinesShown = null)
+    {
+        Speaker = speaker;
+        Lines = lines;
+        Options = options;
+
+        _onAllLinesShown = onAllLinesShown;
+    }
+
+    public void AllDialogueLinesShown()
+    {
+        if(_onAllLinesShown != null)
+        {
+            _onAllLinesShown();
+        }
+    }
+}
+
+public class DialogueLine
+{
+    public string Text { get; private set; }
+    private System.Action _onDisplay;
+
+    public DialogueLine(string text, System.Action onDisplay)
+    {
+        Text = text;
+        _onDisplay = onDisplay;
+    }
+
+    public void Display()
+    {
+        if(_onDisplay != null)
+        {
+            _onDisplay();
+        }
     }
 }
 
 public class DialogueOption
 {
     public string Text { get; private set; }
-    public UnityEvent OnSelect = new UnityEvent();
+    private System.Action _onSelect;
 
-    public DialogueOption(string text)
+    public DialogueOption(string text, System.Action onSelect)
     {
         Text = text;
+        _onSelect = onSelect;
+    }
+
+    public void Select()
+    {
+        if (_onSelect != null)
+        {
+            _onSelect();
+        }
     }
 }

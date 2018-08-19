@@ -1,22 +1,20 @@
-﻿public class FixSailBehavior : ActionBehavior
+﻿using System.Collections.Generic;
+
+public class FixSailBehavior : ActionBehavior
 {
-    private DialogueOption _continueOption;
+    private Dialogue _dialogue;
 
     private void Start()
     {
-        _continueOption = new DialogueOption("Continue");
-        _continueOption.OnSelect.AddListener(OnContinue);
+        var lines = new List<DialogueLine>() { new DialogueLine("I fixed up Boat's sail.  We're leaving tomorrow morning!", null) };
+        _dialogue = new Dialogue("Player", lines, null, () => {
+            EndAction();
+        });
     }
 
     protected override void OnActionStart()
     {
-        AddDialogueLine("I fixed up <Boat>'s sail.  We're leaving tomorrow morning!");
-        AddDialogueOption(_continueOption);
-    }
-
-    void OnContinue()
-    {
-        EndAction();
+        SetDialogue(_dialogue);
     }
 
     protected override void EndAction()

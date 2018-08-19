@@ -1,22 +1,20 @@
-﻿public class PamperBehavior : ActionBehavior
+﻿using System.Collections.Generic;
+
+public class PamperBehavior : ActionBehavior
 {
-    private DialogueOption _continueOption;
+    private Dialogue _dialogue;
 
     private void Start()
     {
-        _continueOption = new DialogueOption("Continue");
-        _continueOption.OnSelect.AddListener(OnContinue);
+        var lines = new List<DialogueLine>() { new DialogueLine("I used some of the oil I gathered to polish Boat's hull.", null) };
+        _dialogue = new Dialogue("Player", lines, null, () => {
+            EndAction();
+        });
     }
 
     protected override void OnActionStart()
     {
-        AddDialogueLine("I used some of the oil I gathered to polish <Boat>'s hull.");
-        AddDialogueOption(_continueOption);
-    }
-
-    void OnContinue()
-    {
-        EndAction();
+        SetDialogue(_dialogue);
     }
 
     protected override void EndAction()

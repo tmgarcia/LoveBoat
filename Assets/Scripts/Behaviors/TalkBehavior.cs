@@ -1,22 +1,20 @@
-﻿public class TalkBehavior : ActionBehavior
+﻿using System.Collections.Generic;
+
+public class TalkBehavior : ActionBehavior
 {
-    private DialogueOption _continueOption;
+    private Dialogue _dialogue;
 
     private void Start()
     {
-        _continueOption = new DialogueOption("Continue");
-        _continueOption.OnSelect.AddListener(OnContinue);
+        var lines = new List<DialogueLine>() { new DialogueLine("I spent some time talking with Boat.", null) };
+        _dialogue = new Dialogue("Player", lines, null, () => {
+            EndAction();
+        });
     }
 
     protected override void OnActionStart()
     {
-        AddDialogueLine("I spent some time talking with <Boat>.");
-        AddDialogueOption(_continueOption);
-    }
-
-    void OnContinue()
-    {
-        EndAction();
+        SetDialogue(_dialogue);
     }
 
     protected override void EndAction()

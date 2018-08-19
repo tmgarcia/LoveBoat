@@ -1,22 +1,20 @@
-﻿public class RepairBehavior : ActionBehavior
+﻿using System.Collections.Generic;
+
+public class RepairBehavior : ActionBehavior
 {
-    private DialogueOption _continueOption;
+    private Dialogue _dialogue;
 
     private void Start()
     {
-        _continueOption = new DialogueOption("Continue");
-        _continueOption.OnSelect.AddListener(OnContinue);
+        var lines = new List<DialogueLine>() { new DialogueLine("I spent some repairing Boat.", null) };
+        _dialogue = new Dialogue("Player", lines, null, () => {
+            EndAction();
+        });
     }
 
     protected override void OnActionStart()
     {
-        AddDialogueLine("I spent some repairing <Boat>.");
-        AddDialogueOption(_continueOption);
-    }
-
-    void OnContinue()
-    {
-        EndAction();
+        SetDialogue(_dialogue);
     }
 
     protected override void EndAction()

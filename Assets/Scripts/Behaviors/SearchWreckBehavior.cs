@@ -1,24 +1,24 @@
-﻿public class SearchWreckBehavior : ActionBehavior
+﻿using System.Collections.Generic;
+
+public class SearchWreckBehavior : ActionBehavior
 {
-    private DialogueOption _continueOption;
+    private Dialogue _dialogue;
 
     private void Start()
     {
-        _continueOption = new DialogueOption("Continue");
-        _continueOption.OnSelect.AddListener(OnContinue);
+        var lines = new List<DialogueLine>() {
+            new DialogueLine("There might be something useful in this wreckage...", null),
+            new DialogueLine("Hmm... a few rations... and it looks like...", null),
+            new DialogueLine("A small book.  'The Castaway's Guide to Survival'.  Sounds useful.", null),
+        };
+        _dialogue = new Dialogue("Player", lines, null, () => {
+            EndAction();
+        });
     }
 
     protected override void OnActionStart()
     {
-        AddDialogueLine("<Player>: There might be something useful in this wreckage...");
-        AddDialogueLine("Hmm... a few rations... and it looks like...");
-        AddDialogueLine("A small book.  'The Castaway's Guide to Survival'.  Sounds useful.");
-        AddDialogueOption(_continueOption);
-    }
-
-    void OnContinue()
-    {
-        EndAction();
+        SetDialogue(_dialogue);
     }
 
     protected override void EndAction()

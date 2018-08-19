@@ -1,26 +1,19 @@
-﻿public class BuildCampBehavior : ActionBehavior
+﻿using System.Collections.Generic;
+
+public class BuildCampBehavior : ActionBehavior
 {
-    private DialogueOption _goodbyeOption;
+    private Dialogue _dialogue;
 
     private void Start()
     {
-        _goodbyeOption = new DialogueOption("GOODBYE");
-        _goodbyeOption.OnSelect.AddListener(OnGoodbye);
+        var lines = new List<DialogueLine>() { new DialogueLine("I put some work into expanding my camp.", null) };
+        _dialogue = new Dialogue("Player", lines, null, () => {
+            EndAction();
+        });
     }
 
     protected override void OnActionStart()
     {
-        AddDialogueLine("I put some work into expanding my camp.");
-        AddDialogueOption(_goodbyeOption);
-    }
-
-    void OnGoodbye()
-    {
-        EndAction();
-    }
-
-    protected override void EndAction()
-    {
-        base.EndAction();
+        SetDialogue(_dialogue);
     }
 }

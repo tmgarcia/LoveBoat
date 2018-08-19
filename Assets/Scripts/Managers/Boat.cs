@@ -19,7 +19,7 @@ public class Boat : MonoSingleton<Boat>
 
     public Dictionary<BoatFace, Sprite> BoatFaceSprites = new Dictionary<BoatFace, Sprite>();
 
-    private void Start()
+    private void Awake()
     {
         BoatFaceSprites.Add(BoatFace.Angry, _angryFace);
         BoatFaceSprites.Add(BoatFace.Annoyed, _annoyedFace);
@@ -27,8 +27,13 @@ public class Boat : MonoSingleton<Boat>
         BoatFaceSprites.Add(BoatFace.Happy, _happyFace);
         BoatFaceSprites.Add(BoatFace.Neutral, _neutralFace);
         BoatFaceSprites.Add(BoatFace.Sad, _sadFace);
-
         Reset();
+    }
+
+    private void Start()
+    {
+        
+
     }
 
     public void Reset()

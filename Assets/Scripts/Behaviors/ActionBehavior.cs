@@ -17,14 +17,9 @@ public abstract class ActionBehavior : MonoBehaviour
 
     abstract protected void OnActionStart();
 
-    virtual protected void AddDialogueLine(string text)
+    virtual protected void SetDialogue(Dialogue dialogue)
     {
-        EventScreen.Instance.AddDialogueLine(text);
-    }
-
-    virtual protected void AddDialogueOption(DialogueOption option)
-    {
-        EventScreen.Instance.AddDialogueOption(option);
+        EventScreen.Instance.SetDialogue(dialogue);
     }
 
     virtual protected void EndAction()

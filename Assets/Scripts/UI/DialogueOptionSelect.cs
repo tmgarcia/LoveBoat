@@ -21,6 +21,6 @@ public class DialogueOptionSelect : MonoBehaviour
 
     void SelectOption()
     {
-        Option.OnSelect.Invoke();
+        Option.Select();
     }
 }

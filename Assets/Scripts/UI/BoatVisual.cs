@@ -14,6 +14,8 @@ public class BoatVisual : MonoBehaviour
         if (!_initialized)
         {
             Boat.Instance.OnUpdate.AddListener(OnBoatUpdate);
+            _boatContainer.SetActive(false);
+            _sailContainer.SetActive(false);
             _initialized = true;
         }
     }
