@@ -106,7 +106,6 @@ public class ActionManager : MonoSingleton<ActionManager>
             allReqsMet = MeetsValueRequirement(item.Amount, value, item.Comparator);
         }
 
-        Debug.Log("Items: " + allReqsMet);
         return allReqsMet;
     }
     private bool HaveRequiredSkills(List<SkillRequirement> skillRequirements)
@@ -122,7 +121,6 @@ public class ActionManager : MonoSingleton<ActionManager>
             allReqsMet = MeetsValueRequirement(skill.Level, level, skill.Comparator);
         }
 
-        Debug.Log("Skills: " + allReqsMet);
         return allReqsMet;
     }
     private bool HaveRequiredFlags(List<FlagRequirement> flagRequirements)
@@ -137,7 +135,6 @@ public class ActionManager : MonoSingleton<ActionManager>
 
             allReqsMet = flagStatus == flag.Status;
         }
-        Debug.Log("Flags: " + allReqsMet);
         return allReqsMet;
     }
 

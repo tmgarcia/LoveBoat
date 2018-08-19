@@ -7,14 +7,14 @@ public class Screen : MonoBehaviour
 	[SerializeField] private string _name;
     public ScreenActivationEvent OnActiveChange = new ScreenActivationEvent();
 
-    private bool _isActive;
+    public bool IsActive { get; private set; }
 	
 	public string Name { get { return _name; } }
 	
 	public void SetActive(bool active)
 	{
-		_isActive = active;
-        OnActiveChange.Invoke(_isActive);
-		gameObject.SetActive(_isActive);
+        IsActive = active;
+        OnActiveChange.Invoke(IsActive);
+		gameObject.SetActive(IsActive);
     }
 }

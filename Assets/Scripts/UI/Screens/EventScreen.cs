@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -15,12 +14,17 @@ public class EventScreen : MonoSingleton<EventScreen>
     private List<string> _dialogueLines = new List<string>();
     private List<DialogueOption> _dialogueOptions = new List<DialogueOption>();
 
-	void Start ()
+    private Screen _screen = null;
+
+    void OnEnable()
     {
-        var screen = gameObject.GetComponent<Screen>();
-        screen.OnActiveChange.AddListener(OnScreenActiveChange);
+        if (_screen == null)
+        {
+            _screen = gameObject.GetComponent<Screen>();
+            _screen.OnActiveChange.AddListener(OnScreenActiveChange);
+        }
     }
-	
+
     void OnScreenActiveChange(bool screenActive)
     {
         if (!screenActive)

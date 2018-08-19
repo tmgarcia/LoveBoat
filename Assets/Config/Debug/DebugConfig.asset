@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1564227d140bd044aaa5ba497d5071e3, type: 3}
-  m_Name: DefaultConfig
+  m_Name: DebugConfig
   m_EditorClassIdentifier: 
   HurricaneDay: 3
   LateDay: 2
@@ -24,7 +24,7 @@ MonoBehaviour:
     MaxValue: 100
   - Id: food
     Label: Prepared Food
-    StartingValue: 10
+    StartingValue: 0
     MaxValue: -1
   - Id: repair
     Label: Boat Repair
@@ -93,15 +93,6 @@ MonoBehaviour:
     Label: Sail Crafted
     StartingValue: 0
   Actions:
-  - {fileID: 11400000, guid: edfb861e0f314b84aa738bd81f08776c, type: 2}
-  - {fileID: 11400000, guid: 30a9c946d828d9f42887578ebde49f59, type: 2}
-  - {fileID: 11400000, guid: 8051aed2d0d4b4c449d087db46497b9c, type: 2}
-  - {fileID: 11400000, guid: 2b60cbfca5c61ee4a9536a388d180e0b, type: 2}
-  - {fileID: 11400000, guid: 8f8c947daffc79d478ee0e4d63771f19, type: 2}
-  - {fileID: 11400000, guid: a64e8cd865aadbb4698159a02d80e897, type: 2}
-  - {fileID: 11400000, guid: e493b1eee3f32894799d6bdcb90c968f, type: 2}
-  - {fileID: 11400000, guid: 5d081415dd7c17b43b486148eaf2d667, type: 2}
-  - {fileID: 11400000, guid: e95521910e77cb24d91ac8775c06baf2, type: 2}
-  - {fileID: 11400000, guid: 8ece8ec6c610e5e4fa02ee947b81412c, type: 2}
-  - {fileID: 11400000, guid: 696662a0a51efb24c8626e29a553291a, type: 2}
-  - {fileID: 11400000, guid: 005450fa1f9afc0419900bb95eb0bd3c, type: 2}
+  - {fileID: 11400000, guid: 8c1a6144573385f44b36a3f6cc9737ba, type: 2}
+  - {fileID: 11400000, guid: 234026d38afb6974ead7fd80385906ff, type: 2}
+  - {fileID: 11400000, guid: 8b6da6628bcf2674298fb6879288b488, type: 2}
