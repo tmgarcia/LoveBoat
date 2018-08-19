@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1564227d140bd044aaa5ba497d5071e3, type: 3}
-  m_Name: DefaultConfig
+  m_Name: DebugConfig
   m_EditorClassIdentifier: 
   HurricaneDay: 3
   LateDay: 2
@@ -24,7 +24,7 @@ MonoBehaviour:
     MaxValue: 100
   - Id: food
     Label: Prepared Food
-    StartingValue: 10
+    StartingValue: 0
     MaxValue: -1
   - Id: repair
     Label: Boat Repair
@@ -93,6 +93,6 @@ MonoBehaviour:
     Label: Sail Crafted
     StartingValue: 0
   Actions:
-  - {fileID: 11400000, guid: 30a9c946d828d9f42887578ebde49f59, type: 2}
-  - {fileID: 11400000, guid: e493b1eee3f32894799d6bdcb90c968f, type: 2}
-  - {fileID: 11400000, guid: 005450fa1f9afc0419900bb95eb0bd3c, type: 2}
+  - {fileID: 11400000, guid: 8c1a6144573385f44b36a3f6cc9737ba, type: 2}
+  - {fileID: 11400000, guid: 234026d38afb6974ead7fd80385906ff, type: 2}
+  - {fileID: 11400000, guid: 8b6da6628bcf2674298fb6879288b488, type: 2}

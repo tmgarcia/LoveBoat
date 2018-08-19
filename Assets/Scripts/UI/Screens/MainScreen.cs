@@ -6,10 +6,15 @@ public class MainScreen : MonoBehaviour
 {
     [SerializeField] private Button _startButton;
 
-	void Start ()
-    {
-        _startButton.onClick.AddListener(OnStartHandler);
+    private Screen _screen = null;
 
+    void OnEnable()
+    {
+        if (_screen == null)
+        {
+            _screen = gameObject.GetComponent<Screen>();
+            _startButton.onClick.AddListener(OnStartHandler);
+        }
     }
 
     void OnStartHandler()

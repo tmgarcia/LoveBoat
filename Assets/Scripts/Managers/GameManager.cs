@@ -15,10 +15,16 @@ public class GameManager : MonoSingleton<GameManager>
             InitializeGame();
     }
 
+    
     private void InitializeGame()
     {
         GameStatus.Instance.Initialize();
         ScreenManager.Instance.GoToStartScreen();
+    }
+
+    public void RestartGame()
+    {
+        InitializeGame();
     }
 
     public void GoNextTimeOfDay()
@@ -58,7 +64,7 @@ public class GameManager : MonoSingleton<GameManager>
 
         if(!GameStatus.Instance.HasFood || GameStatus.Instance.BoatFullyRepaired || GameStatus.Instance.CurrentDay == Config.HurricaneDay)
         {
-            EndGame();
+            ScreenManager.Instance.GoToScreen("end");
         }
         else
         {
@@ -79,32 +85,4 @@ public class GameManager : MonoSingleton<GameManager>
         // Do something with results of action? Rewards?
         GoNextTimeOfDay();
     }
-
-    private void EndGame()
-    {
-        if (!GameStatus.Instance.HasFood)
-        {
-            // Starve Lose
-        }
-        else if(GameStatus.Instance.BoatFullyRepaired)
-        {
-            if(!GameStatus.Instance.BoatFullyLoved)
-            {
-                // Abandonment Lose
-            }
-            else if(GameStatus.Instance.CurrentDay >= Config.LateDay)
-            {
-                // Sacrifice Win
-            }
-            else
-            {
-                // True Win
-            }
-        }
-        else
-        {
-            // Hurricane Lose
-        }
-    }
-
 }
