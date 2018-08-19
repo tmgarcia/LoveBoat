@@ -7,9 +7,10 @@ public class ForageBehavior : ActionBehavior
     private void Start()
     {
         var lines = new List<DialogueLine>() {
-            new DialogueLine("Player", "You go out to find some supplies...", null),
-            new DialogueLine("Player", "You root around in the sand for a while...", null),
-            new DialogueLine("Player", "You end up finding some crabs that look like they might taste all right.", null),
+            new DialogueLine("", "I went out to find some supplies..."),
+            new DialogueLine("", "I rooted around in the sand for a while..."),
+            new DialogueLine("", "I ended up finding some crabs that look like they might taste all right."),
+            new DialogueLine("", "I also found some driftwood that might come in handy."),
         };
         _dialogue = new Dialogue(lines, null, () => {
             EndAction();
@@ -29,6 +30,7 @@ public class ForageBehavior : ActionBehavior
     protected override void EndAction()
     {
         GameStatus.Instance.InventoryItems["foodRaw"].Amount += 1;
+        GameStatus.Instance.InventoryItems["wood"].Amount += 1;
         base.EndAction();
     }
 }
