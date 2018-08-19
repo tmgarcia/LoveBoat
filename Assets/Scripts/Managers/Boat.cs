@@ -21,6 +21,7 @@ public class Boat : MonoSingleton<Boat>
 
     private void Awake()
     {
+        BoatFaceSprites.Add(BoatFace.Hidden, null);
         BoatFaceSprites.Add(BoatFace.Angry, _angryFace);
         BoatFaceSprites.Add(BoatFace.Annoyed, _annoyedFace);
         BoatFaceSprites.Add(BoatFace.Blushing, _blushingFace);
@@ -65,6 +66,7 @@ public class Boat : MonoSingleton<Boat>
 
 public enum BoatFace
 {
+    Hidden,
     Angry,
     Annoyed,
     Blushing,
