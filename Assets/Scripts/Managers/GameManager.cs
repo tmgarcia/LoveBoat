@@ -19,6 +19,7 @@ public class GameManager : MonoSingleton<GameManager>
     private void InitializeGame()
     {
         GameStatus.Instance.Initialize();
+        Boat.Instance.Reset();
         ScreenManager.Instance.GoToStartScreen();
     }
 
