@@ -151,7 +151,7 @@ public class DialogueLine
     public string Text { get; private set; }
     private System.Action _onDisplay;
 
-    public DialogueLine(string speaker, string text,System.Action onDisplay)
+    public DialogueLine(string speaker, string text,System.Action onDisplay = null)
     {
         Speaker = speaker;
         Text = text;

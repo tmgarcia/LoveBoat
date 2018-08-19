@@ -24,6 +24,14 @@ public class BoatVisual : MonoBehaviour
     {
         _boatContainer.SetActive(Boat.Instance.IsVisible);
         _sailContainer.SetActive(Boat.Instance.HasSail);
-        _face.sprite = Boat.Instance.BoatFaceSprites[Boat.Instance.CurrentFace];
+        if (Boat.Instance.BoatFaceSprites[Boat.Instance.CurrentFace] == null)
+        {
+            _face.gameObject.SetActive(false);
+        }
+        else
+        {
+            _face.gameObject.SetActive(true);
+            _face.sprite = Boat.Instance.BoatFaceSprites[Boat.Instance.CurrentFace];
+        }
     }
 }
