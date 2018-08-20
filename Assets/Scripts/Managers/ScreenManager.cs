@@ -20,7 +20,7 @@ public class ScreenManager : MonoSingleton<ScreenManager>
         {
             screen.SetActive(false);
         }
-        _startScreen.SetActive(true);
+        //_startScreen.SetActive(true);
     }
 
     public void GoToStartScreen()
