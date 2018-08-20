@@ -19,6 +19,7 @@ public class FixSailBehavior : ActionBehavior
 
     protected override void EndAction()
     {
+        GameStatus.Instance.Flags["sail"].Status = true;
         base.EndAction();
     }
 }

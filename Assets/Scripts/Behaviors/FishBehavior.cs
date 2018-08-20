@@ -2,24 +2,50 @@
 
 public class FishBehavior : ActionBehavior
 {
-    private Dialogue _dialogue;
-
-    private void Start()
-    {
-        var lines = new List<DialogueLine>() { new DialogueLine("Player", "It's raining... might be a good time to fish.", null) };
-        _dialogue = new Dialogue(lines, null, () => {
-            EndAction();
-        });
-    }
-
     protected override void OnActionStart()
     {
-        SetDialogue(_dialogue);
+        var lines = FishLogic();
+
+        SetDialogue(new Dialogue(lines, null, () => {
+            EndAction();
+        }));
     }
 
     protected override void EndAction()
     {
-        GameStatus.Instance.InventoryItems["foodRaw"].Amount += 2;
         base.EndAction();
+    }
+
+    private List<DialogueLine> FishLogic()
+    {
+        var lines = new List<DialogueLine>();
+        lines.Add(new DialogueLine("", "It's raining... might be a good time to fish."));
+
+        var skill = GameStatus.Instance.SkillLevels["fishing"].Level;
+
+        var fishGathered = 1;
+
+        if (skill < 10)
+        {
+            lines.Add(new DialogueLine("", "I didn't catch much, but I'm getting better."));
+            fishGathered = 1;
+        }
+        else if (skill < 20)
+        {
+            lines.Add(new DialogueLine("", "The fish were pretty cooperative today."));
+            fishGathered = 2;
+        }
+        else
+        {
+            lines.Add(new DialogueLine("", "By now, I'm a master fisherman."));
+            fishGathered = 3;
+        }
+
+        GameStatus.Instance.InventoryItems["foodRaw"].Amount += fishGathered;
+
+        GameStatus.Instance.SkillLevels["fishing"].Level += 3;
+
+
+        return lines;
     }
 }

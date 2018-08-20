@@ -2,18 +2,22 @@
 
 public class BuildCampBehavior : ActionBehavior
 {
-    private Dialogue _dialogue;
-
-    private void Start()
-    {
-        var lines = new List<DialogueLine>() { new DialogueLine("Player", "I put some work into expanding my camp.", null) };
-        _dialogue = new Dialogue(lines, null, () => {
-            EndAction();
-        });
-    }
 
     protected override void OnActionStart()
     {
-        SetDialogue(_dialogue);
+        var lines = new List<DialogueLine>() { new DialogueLine("", "I put some work into expanding my camp.") };
+        lines.Add(new DialogueLine("", "Cooking should be much easier now!"));
+        GameStatus.Instance.InventoryItems["wood"].Amount -= 10;
+        GameStatus.Instance.SkillLevels["cooking"].Level += 4;
+        GameStatus.Instance.SkillLevels["crafting"].Level += 2;
+
+        SetDialogue(new Dialogue(lines, null, () => {
+            EndAction();
+        }));
+    }
+
+    protected override void EndAction()
+    {
+        base.EndAction();
     }
 }
