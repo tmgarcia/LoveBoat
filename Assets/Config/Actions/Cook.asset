@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: cook
   Label: Cook
-  Priority: 0
+  Priority: 1
   Icon: {fileID: 0}
   Location: 1
   RequiredTimeOfDay: -1
