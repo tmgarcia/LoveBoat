@@ -12,7 +12,10 @@ public class GameManager : MonoSingleton<GameManager>
         if (_gameConfig == null)
             Debug.LogError("NO GAME CONFIG SET!! CANNOT DO GAME!!");
         else
+        {
             InitializeGame();
+            ScreenManager.Instance.GoToScreen("intro");
+        }
     }
 
     
@@ -20,12 +23,12 @@ public class GameManager : MonoSingleton<GameManager>
     {
         GameStatus.Instance.Initialize();
         Boat.Instance.Reset();
-        ScreenManager.Instance.GoToStartScreen();
     }
 
     public void RestartGame()
     {
         InitializeGame();
+        ScreenManager.Instance.GoToStartScreen();
     }
 
     public void GoNextTimeOfDay()
@@ -54,15 +57,30 @@ public class GameManager : MonoSingleton<GameManager>
         else
         {
             GameStatus.Instance.CurrentTimeOfDay = nextTimeOfDay;
+            GameStatus.Instance.CurrentWeather = GetRandomWeather();
             ScreenManager.Instance.GoToScreen("actions");
         }
+    }
+
+    private Weather GetRandomWeather()
+    {
+        var rand = Random.Range(0, 3);
+        Weather weather;
+        if (rand == 0)
+            weather = Weather.Cloudy;
+        else if (rand == 1)
+            weather = Weather.Rainy;
+        else
+            weather = GameStatus.Instance.CurrentTimeOfDay == TimeOfDay.Evening ? Weather.Clear : Weather.Sunny;
+
+        return weather;
     }
 
     public void GoToNextDay()
     {
         GameStatus.Instance.CurrentDay += 1;
         GameStatus.Instance.CurrentTimeOfDay = TimeOfDay.Morning;
-        GameStatus.Instance.FoodLevel.CurrentValue -= 1;
+        
 
         if(!GameStatus.Instance.HasFood || GameStatus.Instance.BoatFullyRepaired || GameStatus.Instance.CurrentDay == Config.HurricaneDay)
         {
@@ -70,6 +88,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else
         {
+            GameStatus.Instance.FoodLevel.CurrentValue -= 1;
             //ScreenManager.Instance.GoToScreen("actions");
             ScreenManager.Instance.GoToScreen("day");
         }
