@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: fixSail
   Label: Fix Sail
-  Priority: 0
+  Priority: 4
   Icon: {fileID: 0}
   Location: 1
   RequiredTimeOfDay: -1
@@ -24,3 +24,5 @@ MonoBehaviour:
   RequiredFlags:
   - FlagId: sewKit
     Status: 1
+  - FlagId: sail
+    Status: 0

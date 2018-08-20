@@ -24,4 +24,6 @@ MonoBehaviour:
     Comparator: 3
     Amount: 5
   RequiredSkills: []
-  RequiredFlags: []
+  RequiredFlags:
+  - FlagId: boatFound
+    Status: 1
