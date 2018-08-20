@@ -13,11 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: cutWood
   Label: Cut Wood
-  Priority: 0
+  Priority: 2
   Icon: {fileID: 0}
   Location: 0
   RequiredTimeOfDay: -1
-  RequiredWeather: -1
+  RequiredWeather: 4
   RequiredResources:
   - ResourceId: food
     Comparator: 3
