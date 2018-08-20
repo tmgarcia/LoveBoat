@@ -2,45 +2,80 @@
 
 public class RepairBehavior : ActionBehavior
 {
-    private Dialogue _dialogue;
-
-    private void Start()
-    {
-        var lines = new List<DialogueLine>() { new DialogueLine("Player", "I spent some repairing Boat.", null) };
-        _dialogue = new Dialogue(lines, null, () => {
-            EndAction();
-        });
-    }
 
     protected override void OnActionStart()
     {
-        SetDialogue(_dialogue);
+        var lines = new List<DialogueLine>();
+        var repairs = GetRepairAmount();
+        var currentRepair = GameStatus.Instance.RepairLevel.CurrentValue;
+
+        if (currentRepair == 0)
+        {
+            lines = RepairMilestone1();
+        }
+        else if (currentRepair < 20 && currentRepair + repairs >= 20)
+        {
+            lines = RepairMilestone2();
+        }
+        else if (currentRepair < 40 && currentRepair + repairs >= 40)
+        {
+            lines = RepairMilestone3();
+        }
+        else if (currentRepair < 60 && currentRepair + repairs >= 60)
+        {
+            lines = RepairMilestone4();
+        }
+        else if (currentRepair < 80 && currentRepair + repairs >= 80)
+        {
+            lines = RepairMilestone5();
+        }
+        else
+        {
+            lines = NormalRepair();
+        }
+
+
+        SetDialogue(new Dialogue(lines, null));
     }
 
     protected override void EndAction()
     {
-        GameStatus.Instance.InventoryItems["wood"].Amount -= 5;
-        GameStatus.Instance.RepairLevel.CurrentValue += 5;
-        GameStatus.Instance.LoveLevel.CurrentValue += 3;
+        GameStatus.Instance.InventoryItems["wood"].Amount -= 3;
+
+        
+        GameStatus.Instance.RepairLevel.CurrentValue += GetRepairAmount();
+        GameStatus.Instance.LoveLevel.CurrentValue += 2;
         base.EndAction();
     }
 
+    private int GetRepairAmount()
+    {
+        var repairs = 3;
+        if (GameStatus.Instance.SkillLevels["crafting"].Level < 10)
+        {
+            repairs = 3;
+        }
+        else if (GameStatus.Instance.SkillLevels["crafting"].Level < 20)
+        {
+            repairs = 5;
+        }
+        else
+        {
+            repairs = 7;
+        }
 
+        return repairs;
+    }
 
-    private List<DialogueLine> RepairMilestone0()
+    private List<DialogueLine> NormalRepair()
     {
         var lines = new List<DialogueLine>();
 
-        lines.Add(new DialogueLine("", "I walked along the beach..."));
-        lines.Add(new DialogueLine("Player", "Hmm... this boat’s been in better shape... the hull’s been smashed up, and there’s no sail.  Looks like it’s going to take a lot of work to get it seaworthy again."));
-        lines.Add(new DialogueLine("Player", "There’s a dedication plaque on the front... looks like this boat’s name is..."));
-        lines.Add(new DialogueLine("Player", "Let’s see if <Boat> has any supplies left on board..."));
-        lines.Add(new DialogueLine("Boat", "Hey, what do you think you’re doing?!"));
-        lines.Add(new DialogueLine("Player", "What? Who said that?!"));
-
+        lines.Add(new DialogueLine("", "I spent some time repairing <Boat>..."));
 
         return lines;
     }
+
     private List<DialogueLine> RepairMilestone1()
     {
         var lines = new List<DialogueLine>();

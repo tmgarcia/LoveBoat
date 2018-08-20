@@ -17,7 +17,7 @@ public class StudyBehavior : ActionBehavior
         else if (roll < 2)
         {
             lines.Add(new DialogueLine("", "I learned some woodworking techniques."));
-            GameStatus.Instance.SkillLevels["craftsmanship"].Level += 2;
+            GameStatus.Instance.SkillLevels["crafting"].Level += 2;
         }
         else
         {
