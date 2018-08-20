@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: b72775e95bfff3f4db09ee659dbb0ed7
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Lekton
+  fontNames:
+  - Lekton
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 6054bcbd91e33574e8c7b397ab06208f, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
