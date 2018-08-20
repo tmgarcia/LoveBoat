@@ -17,7 +17,7 @@ MonoBehaviour:
   Icon: {fileID: 0}
   Location: 0
   RequiredTimeOfDay: -1
-  RequiredWeather: -1
+  RequiredWeather: 2
   RequiredResources:
   - ResourceId: food
     Comparator: 3
