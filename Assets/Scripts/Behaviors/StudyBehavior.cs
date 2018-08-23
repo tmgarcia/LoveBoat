@@ -8,21 +8,26 @@ public class StudyBehavior : ActionBehavior
     {
         var lines = new List<DialogueLine>() { new DialogueLine("", "I spent some time reading the survival guide.") };
 
-        var roll = Random.Range(0, 3);
+        var roll = Random.Range(0, 4);
         if (roll < 1)
         {
             lines.Add(new DialogueLine("", "I learned some cooking techniques."));
-            GameStatus.Instance.SkillLevels["cooking"].Level += 2;
+            GameStatus.Instance.SkillLevels["cooking"].Level += 5;
         }
         else if (roll < 2)
         {
             lines.Add(new DialogueLine("", "I learned some woodworking techniques."));
-            GameStatus.Instance.SkillLevels["crafting"].Level += 2;
+            GameStatus.Instance.SkillLevels["crafting"].Level += 5;
+        }
+        else if (roll < 3)
+        {
+            lines.Add(new DialogueLine("", "I learned some fishing techniques."));
+            GameStatus.Instance.SkillLevels["fishing"].Level += 5;
         }
         else
         {
-            lines.Add(new DialogueLine("", "I learned some fishing techniques."));
-            GameStatus.Instance.SkillLevels["fishing"].Level += 2;
+            lines.Add(new DialogueLine("", "I learned some scouting techniques."));
+            GameStatus.Instance.SkillLevels["scouting"].Level += 5;
         }
 
 

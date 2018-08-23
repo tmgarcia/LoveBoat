@@ -54,6 +54,12 @@ public class CookBehavior : ActionBehavior
             lines.Add(new DialogueLine("", "If I had more ingredients, I probably could have made more..."));
         }
 
+        if (maxFoodConversion == 3)
+        {
+            lines.Add(new DialogueLine("", "I saved some oil, too."));
+            GameStatus.Instance.InventoryItems["oil"].Amount += foodPrepared;
+        }
+
         GameStatus.Instance.InventoryItems["foodRaw"].Amount -= foodPrepared;
         GameStatus.Instance.ResourceValues["food"].CurrentValue += foodPrepared;
 

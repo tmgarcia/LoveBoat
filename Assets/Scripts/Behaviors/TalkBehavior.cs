@@ -19,7 +19,7 @@ public class TalkBehavior : ActionBehavior
 
     protected override void EndAction()
     {
-        GameStatus.Instance.LoveLevel.CurrentValue += 5;
+        GameStatus.Instance.LoveLevel.CurrentValue += 8;
         base.EndAction();
     }
 }

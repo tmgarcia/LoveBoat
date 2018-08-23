@@ -41,6 +41,13 @@ public class CutWoodBehavior : ActionBehavior
             woodGathered = 7;
         }
 
+        if (GameStatus.Instance.Flags["coconutGrove"].Status)
+        {
+            lines.Add(new DialogueLine("", "I found some coconuts, too!"));
+            GameStatus.Instance.InventoryItems["foodRaw"].Amount += 1;
+        }
+        
+
         GameStatus.Instance.InventoryItems["wood"].Amount += woodGathered;
 
         GameStatus.Instance.SkillLevels["crafting"].Level += 3;

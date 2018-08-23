@@ -22,27 +22,31 @@ public class ExploreBehavior : ActionBehavior
     private List<DialogueLine> ExplorationStages()
     {
         var lines = new List<DialogueLine>();
-        switch (GameStatus.Instance.SkillLevels["scouting"].Level)
+        var skill = GameStatus.Instance.SkillLevels["scouting"].Level;
+        if (!GameStatus.Instance.Flags["boatFound"].Status)
         {
-            case 0:
-                lines.AddRange(DiscoverTheBoat());
-                break;
-            case 2:
-                lines.Add(new DialogueLine("Player", "I found an axe!"));
-                GameStatus.Instance.Flags["axe"].Status = true;
-                break;
-            case 3:
-                lines.Add(new DialogueLine("Player", "I found a fishing rod!"));
-                GameStatus.Instance.Flags["rod"].Status = true;
-                break;
-            case 5:
-                lines.Add(new DialogueLine("Player", "I found a coconut grove!"));
-                GameStatus.Instance.Flags["coconutGrove"].Status = true;
-                break;
-            default:
-                lines.Add(new DialogueLine("", "I feel like I'm getting to know the island better.", ()=> { }));
-                break;
+            lines.AddRange(DiscoverTheBoat());
         }
+        else if (skill >= 3 && !GameStatus.Instance.Flags["axe"].Status)
+        {
+            lines.Add(new DialogueLine("Player", "I found an axe!"));
+            GameStatus.Instance.Flags["axe"].Status = true;
+        }
+        else if (skill >= 5 && !GameStatus.Instance.Flags["rod"].Status)
+        {
+            lines.Add(new DialogueLine("Player", "I found a fishing rod!"));
+            GameStatus.Instance.Flags["rod"].Status = true;
+        }
+        else if (skill >= 8 && !GameStatus.Instance.Flags["coconutGrove"].Status)
+        {
+            lines.Add(new DialogueLine("Player", "I found a coconut grove!"));
+            GameStatus.Instance.Flags["coconutGrove"].Status = true;
+        }
+        else
+        {
+            lines.Add(new DialogueLine("", "I feel like I'm getting to know the island better.", () => { }));
+        }
+
         GameStatus.Instance.SkillLevels["scouting"].Level += 1;
         return lines;
     }

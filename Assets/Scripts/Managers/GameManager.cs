@@ -64,6 +64,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private Weather GetRandomWeather()
     {
+        if (!GameStatus.Instance.Flags["boatFound"].Status) { return Weather.Sunny; }
         var rand = Random.Range(0, 3);
         Weather weather;
         if (rand == 0)

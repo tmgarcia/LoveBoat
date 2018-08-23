@@ -31,6 +31,7 @@ public class ForageBehavior : ActionBehavior
     {
         GameStatus.Instance.InventoryItems["foodRaw"].Amount += 1;
         GameStatus.Instance.InventoryItems["wood"].Amount += 1;
+        GameStatus.Instance.SkillLevels["scouting"].Level += 1;
         base.EndAction();
     }
 }

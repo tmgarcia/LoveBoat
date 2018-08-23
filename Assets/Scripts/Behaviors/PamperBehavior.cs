@@ -20,7 +20,7 @@ public class PamperBehavior : ActionBehavior
     protected override void EndAction()
     {
         GameStatus.Instance.InventoryItems["oil"].Amount -= 3;
-        GameStatus.Instance.LoveLevel.CurrentValue += 8;
+        GameStatus.Instance.LoveLevel.CurrentValue += 23;
         base.EndAction();
     }
 }
