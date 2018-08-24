@@ -5,33 +5,54 @@ using UnityEngine.Video;
 
 public class VideoScreen : MonoBehaviour
 {
-    [SerializeField] private VideoPlayer _videoPlayer;
-    [SerializeField] private VideoClip _videoClip;
+    [SerializeField] private string _fileName;
 
+    private VideoPlayer _videoPlayer = null;
     private Screen _screen = null;
 
 	void OnEnable()
     {
+        CreatePlayer();
+
         if (_screen == null)
             _screen = gameObject.GetComponent<Screen>();
         if (_screen.IsActive)
             ShowVideo();
     }
-	
+
     private void ShowVideo()
     {
         AudioManager.Instance.StopPlayingMusic();
-        _videoPlayer.playOnAwake = false;
-        _videoPlayer.clip = _videoClip;
-        _videoPlayer.loopPointReached += OnVideoEnd;
+
+        CreatePlayer();
+
         _videoPlayer.Play();
+    }
+
+    private void CreatePlayer()
+    {
+        if (_videoPlayer != null)
+            return;
+
+        var instance = new GameObject();
+        _videoPlayer = instance.AddComponent<VideoPlayer>();
+
+        _videoPlayer.targetCamera = Camera.main;
+        _videoPlayer.renderMode = VideoRenderMode.CameraNearPlane;
+        _videoPlayer.playOnAwake = false;
+
+        _videoPlayer.url = System.IO.Path.Combine(Application.streamingAssetsPath, _fileName);
+        _videoPlayer.loopPointReached += OnVideoEnd;
+        _videoPlayer.Prepare();
     }
 
     void OnVideoEnd(VideoPlayer player)
     {
         _videoPlayer.Stop();
-        _videoPlayer.clip = null;
-        ScreenManager.Instance.GoToStartScreen();
+        if(_screen.name == "credits")
+            GameManager.Instance.RestartGame();
+        else
+            ScreenManager.Instance.GoToStartScreen();
     }
 
     private void Update()
