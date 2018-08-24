@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: pamper
   Label: Pamper
-  Priority: 0
+  Priority: 1
   Icon: {fileID: 0}
   Location: 2
   RequiredTimeOfDay: -1

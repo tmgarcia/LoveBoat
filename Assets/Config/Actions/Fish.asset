@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: fish
   Label: Fish
-  Priority: 0
+  Priority: 2
   Icon: {fileID: 0}
   Location: 0
   RequiredTimeOfDay: -1

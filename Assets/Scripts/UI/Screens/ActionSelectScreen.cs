@@ -23,6 +23,8 @@ public class ActionSelectScreen : MonoBehaviour
         if(_screen.IsActive)
         {
             SetActionOptions();
+            if(AudioManager.Instance.CurrentMusic != _screen.Music)
+                AudioManager.Instance.PlayMusic(_screen.Music, true);
         }
     }
 

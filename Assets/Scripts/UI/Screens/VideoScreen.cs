@@ -20,6 +20,7 @@ public class VideoScreen : MonoBehaviour
 	
     private void ShowVideo()
     {
+        AudioManager.Instance.StopPlayingMusic();
         _videoPlayer.playOnAwake = false;
         _videoPlayer.clip = _videoClip;
         _videoPlayer.loopPointReached += OnVideoEnd;

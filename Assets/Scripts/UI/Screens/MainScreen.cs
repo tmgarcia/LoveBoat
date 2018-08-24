@@ -15,6 +15,11 @@ public class MainScreen : MonoBehaviour
             _screen = gameObject.GetComponent<Screen>();
             _startButton.onClick.AddListener(OnStartHandler);
         }
+
+        if (_screen.IsActive)
+        {
+            AudioManager.Instance.PlayMusic(_screen.Music, true);
+        }
     }
 
     void OnStartHandler()

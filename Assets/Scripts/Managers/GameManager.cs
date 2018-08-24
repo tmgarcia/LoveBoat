@@ -2,10 +2,12 @@
 
 public class GameManager : MonoSingleton<GameManager>
 {
+    [SerializeField] private EndScreen _endScreen;
     [SerializeField] private GameConfig _gameConfig;
     public GameConfig Config { get { return _gameConfig; } }
 
     public ActionEvent OnActionStartEvent = new ActionEvent();
+
 
     private void Start()
     {
@@ -107,5 +109,39 @@ public class GameManager : MonoSingleton<GameManager>
         ActionManager.Instance.ActiveAction = null;
         // Do something with results of action? Rewards?
         GoNextTimeOfDay();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Alpha0))
+        {
+            _endScreen.ShortcutEnd = true;
+            _endScreen.ShortcuttedEnding = 0;
+            ScreenManager.Instance.GoToScreen("end");
+        }
+        else if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            _endScreen.ShortcutEnd = true;
+            _endScreen.ShortcuttedEnding = 1;
+            ScreenManager.Instance.GoToScreen("end");
+        }
+        else if (Input.GetKeyUp(KeyCode.Alpha2))
+        {
+            _endScreen.ShortcutEnd = true;
+            _endScreen.ShortcuttedEnding = 2;
+            ScreenManager.Instance.GoToScreen("end");
+        }
+        else if (Input.GetKeyUp(KeyCode.Alpha3))
+        {
+            _endScreen.ShortcutEnd = true;
+            _endScreen.ShortcuttedEnding = 3;
+            ScreenManager.Instance.GoToScreen("end");
+        }
+        else if (Input.GetKeyUp(KeyCode.Alpha4))
+        {
+            _endScreen.ShortcutEnd = true;
+            _endScreen.ShortcuttedEnding = 4;
+            ScreenManager.Instance.GoToScreen("end");
+        }
     }
 }

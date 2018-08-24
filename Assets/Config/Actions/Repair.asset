@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: repair
   Label: Repair
-  Priority: 1
+  Priority: 2
   Icon: {fileID: 0}
   Location: 2
   RequiredTimeOfDay: 2

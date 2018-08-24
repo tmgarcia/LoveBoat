@@ -6,6 +6,14 @@ public class AudioManager : MonoSingleton<AudioManager>
     [SerializeField] private AudioSource _musicSource;
     [SerializeField] private AudioSource _effectSource;
 
+    public AudioClip CurrentMusic
+    {
+        get
+        {
+            return _musicSource.isPlaying ? _musicSource.clip : null;
+        }
+    }
+
     public void PlaySoundEffect(AudioClip clip)
     {
         _effectSource.PlayOneShot(clip, 1);

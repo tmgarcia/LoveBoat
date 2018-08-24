@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1564227d140bd044aaa5ba497d5071e3, type: 3}
   m_Name: DefaultConfig
   m_EditorClassIdentifier: 
-  HurricaneDay: 20
-  LateDay: 15
+  HurricaneDay: 25
+  LateDay: 20
   EnergyResourceId: energy
   FoodResourceId: food
   RepairResourceId: repair

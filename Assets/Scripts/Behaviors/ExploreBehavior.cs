@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class ExploreBehavior : ActionBehavior
 {
+    [SerializeField] private AudioClip _discoverMusic;
     private Dialogue _dialogue;
 
     protected override void OnActionStart()
@@ -55,7 +57,7 @@ public class ExploreBehavior : ActionBehavior
     {
         var lines = new List<DialogueLine>();
 
-        lines.Add(new DialogueLine("", "I walked along the beach..."));
+        lines.Add(new DialogueLine("", "I walked along the beach...", () => { AudioManager.Instance.PlayMusic(_discoverMusic, true); }));
         lines.Add(new DialogueLine("Player", "A boat... over there, on the shore!  I’m saved!", () => {
             Boat.Instance.SetVisible(true);
             Boat.Instance.SetFace(BoatFace.Hidden);
