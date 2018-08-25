@@ -26,7 +26,7 @@ public class VideoScreen : MonoBehaviour
 
         CreatePlayer();
 
-        _videoPlayer.Play();
+        StartCoroutine(Play());
     }
 
     private void CreatePlayer()
@@ -37,13 +37,27 @@ public class VideoScreen : MonoBehaviour
         var instance = new GameObject();
         _videoPlayer = instance.AddComponent<VideoPlayer>();
 
+        _videoPlayer.errorReceived += (src, msg) => { print(msg); };
+
         _videoPlayer.targetCamera = Camera.main;
         _videoPlayer.renderMode = VideoRenderMode.CameraNearPlane;
         _videoPlayer.playOnAwake = false;
+        _videoPlayer.skipOnDrop = false;
 
         _videoPlayer.url = System.IO.Path.Combine(Application.streamingAssetsPath, _fileName);
         _videoPlayer.loopPointReached += OnVideoEnd;
+    }
+
+    IEnumerator Play()
+    {
         _videoPlayer.Prepare();
+        while (!_videoPlayer.isPrepared)
+        {
+            print("preparing..." + _videoPlayer.frameCount);
+            yield return null;
+        }
+        print("playing!" + _videoPlayer.frameCount);
+        _videoPlayer.Play();
     }
 
     void OnVideoEnd(VideoPlayer player)
