@@ -17,7 +17,7 @@ MonoBehaviour:
   Icon: {fileID: 0}
   Location: 0
   RequiredTimeOfDay: -1
-  RequiredWeather: 2
+  RequiredWeather: 3
   RequiredResources:
   - ResourceId: food
     Comparator: 3
@@ -27,3 +27,5 @@ MonoBehaviour:
   RequiredFlags:
   - FlagId: guide
     Status: 1
+  - FlagId: coconutGrove
+    Status: 0

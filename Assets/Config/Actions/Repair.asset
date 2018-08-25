@@ -16,7 +16,7 @@ MonoBehaviour:
   Priority: 2
   Icon: {fileID: 0}
   Location: 2
-  RequiredTimeOfDay: 2
+  RequiredTimeOfDay: 3
   RequiredWeather: -1
   RequiredResources: []
   RequiredItems:

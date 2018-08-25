@@ -22,7 +22,7 @@ MonoBehaviour:
   RequiredItems:
   - ItemId: oil
     Comparator: 3
-    Amount: 5
+    Amount: 3
   RequiredSkills: []
   RequiredFlags:
   - FlagId: boatFound
