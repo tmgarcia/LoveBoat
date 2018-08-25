@@ -65,7 +65,7 @@ public class EndScreen : MonoBehaviour
         {
             StarveEnd();
         }
-        else if (GameStatus.Instance.BoatFullyRepaired)
+        else if (GameStatus.Instance.Flags["sail"].Status)
         {
             if (!GameStatus.Instance.BoatFullyLoved)
             {

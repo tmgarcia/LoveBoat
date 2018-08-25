@@ -85,7 +85,7 @@ public class GameManager : MonoSingleton<GameManager>
         GameStatus.Instance.CurrentTimeOfDay = TimeOfDay.Morning;
         
 
-        if(!GameStatus.Instance.HasFood || GameStatus.Instance.BoatFullyRepaired || GameStatus.Instance.CurrentDay == Config.HurricaneDay)
+        if(!GameStatus.Instance.HasFood || GameStatus.Instance.Flags["sail"].Status || GameStatus.Instance.CurrentDay == Config.HurricaneDay)
         {
             ScreenManager.Instance.GoToScreen("end");
         }
