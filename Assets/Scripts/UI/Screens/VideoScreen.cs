@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class VideoScreen : MonoBehaviour
 {
     [SerializeField] private string _fileName;
+    [SerializeField] private Button _optionalPlayButton;
 
     private VideoPlayer _videoPlayer = null;
     private Screen _screen = null;
@@ -15,7 +17,15 @@ public class VideoScreen : MonoBehaviour
         CreatePlayer();
 
         if (_screen == null)
+        {
             _screen = gameObject.GetComponent<Screen>();
+
+            if(_optionalPlayButton != null)
+            {
+                _optionalPlayButton.onClick.AddListener(PlayVideo);
+                _optionalPlayButton.gameObject.SetActive(false);
+            }
+        }
         if (_screen.IsActive)
             ShowVideo();
     }
@@ -26,7 +36,22 @@ public class VideoScreen : MonoBehaviour
 
         CreatePlayer();
 
-        StartCoroutine(Play());
+        if(_optionalPlayButton != null && !_optionalPlayButton.IsActive())
+        {
+            _optionalPlayButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            if (_optionalPlayButton != null)
+                _optionalPlayButton.gameObject.SetActive(false);
+
+            StartCoroutine(Play());
+        }
+    }
+
+    public void PlayVideo()
+    {
+        ShowVideo();
     }
 
     private void CreatePlayer()
@@ -46,6 +71,7 @@ public class VideoScreen : MonoBehaviour
 
         _videoPlayer.url = System.IO.Path.Combine(Application.streamingAssetsPath, _fileName);
         _videoPlayer.loopPointReached += OnVideoEnd;
+        _videoPlayer.Prepare();
     }
 
     IEnumerator Play()
